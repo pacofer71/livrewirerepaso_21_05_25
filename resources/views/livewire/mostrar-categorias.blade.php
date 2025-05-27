@@ -34,10 +34,42 @@
                     </p>
                 </td>
                 <td class="px-6 py-4">
-                   Acciones
+                    <button class="mr-2" wire:click="edit({{$item->id}})">
+                        <i class="fas fa-edit text-xl"></i>
+                    </button>
+                   <button wire:click="confirmarBorrar({{$item->id}})">
+                    <i class="fas fa-trash text-xl"></i>
+                   </button>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    <!-- Ventana modal para actualizar una categoria --------------------------------------- -->
+     <x-dialog-modal wire:model="openUpdate">
+        <x-slot name="title">
+            Editar Categoria
+        </x-slot>
+        <x-slot name="content">
+
+            <x-label value="Nombre" />
+            <x-input type="text" placeholder="Nombre Categoria..." class="w-full" wire:model="uform.nombre" />
+            <x-input-error for="uform.nombre" />
+
+            <x-label value="Color" class="mt-4" />
+            <x-input type="color" class="w-full" wire:model="uform.color" />
+            <x-input-error for="uform.color" />
+        </x-slot>
+        <x-slot name="footer">
+            <div class="flex flex-row-reverse">
+                <x-button wire:click="update">
+                    <i class="fas fa-save mr-2"></i>EDITAR
+                </x-button>
+                <x-button class="bg-red-500 hover:bg-red-600 mr-4" wire:click="cancelar">
+                    <i class="fas fa-xmark mr-2"></i>CANCELAR
+                </x-button>
+            </div>
+        </x-slot>
+    </x-dialog-modal>
+
 </x-mios.base>

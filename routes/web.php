@@ -1,6 +1,8 @@
 <?php
 
+use App\Livewire\MostarTipos;
 use App\Livewire\MostrarCategorias;
+use App\Livewire\MostrarUserPosts;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +23,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::get('categorias', MostrarCategorias::class)->name('categorias');
+    //Route::get('tipos', MostarTipos::class)->name('tipos');
+    Route::get('showposts', MostrarUserPosts::class)->name('showposts');
 });

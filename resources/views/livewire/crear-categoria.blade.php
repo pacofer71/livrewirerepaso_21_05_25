@@ -5,7 +5,7 @@
     </button>
     <x-dialog-modal wire:model="openCrear">
         <x-slot name="title">
-            Nueva Categorioa
+            Nueva Categoria
         </x-slot>
         <x-slot name="content">
 

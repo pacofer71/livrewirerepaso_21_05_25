@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(5)->create();
         $this->call(CategorySeeder::class);
+        $this->call(TypeSeeder::class);
 
         Storage::deleteDirectory('images/posts');
         Storage::makeDirectory('images/posts');

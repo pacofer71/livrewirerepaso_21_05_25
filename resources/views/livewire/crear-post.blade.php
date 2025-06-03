@@ -48,6 +48,9 @@
                 <label for="cimagen" class="absolute bottom-2 end-2 -2 p-2 bg-black text-white font-bold cursor-pointer rounded-lg">
                     <i class="fas fa-upload mr-2"></i>SUBIR
                 </label>
+                @if($cform->imagen)
+                <img src="{{$cform->imagen->temporaryUrl()}}" class="w-full h-full rounded-lg bg-center bg-no-repeat bg-cover" />
+                @endif
             </div>
             <x-input-error for="cform.imagen" />
 
@@ -55,7 +58,7 @@
         </x-slot>
         <x-slot name="footer">
             <div class="flex flex-row-reverse">
-                <x-button wire:click="store">
+                <x-button wire:click="store" wire:loading.attr='hidden'>
                     <i class="fas fa-save mr-2"></i>GUARDAR
                 </x-button>
                 <x-button class="bg-red-500 hover:bg-red-600 mr-4" wire:click="cancelar">

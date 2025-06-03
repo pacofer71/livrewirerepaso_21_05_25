@@ -49,16 +49,8 @@
 
     @livewireScripts
     <script>
-        Livewire.on('mensaje', txt => {
-            Swal.fire({
-                icon: "success",
-                title: txt,
-                showConfirmButton: false,
-                timer: 1500
-            });
-        });
-        Livewire.on('evtPermisoBorrar', id => {
-            Swal.fire({
+        function mostrarAlertas(vista, id){
+             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
                 icon: "warning",
@@ -68,10 +60,26 @@
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Livewire.dispatchTo('mostrar-categorias', 'evtBorrarOk' ,id);
+                    Livewire.dispatchTo(vista, 'evtBorrarOk' ,id);
                 }
             });
-        })
+        }
+        Livewire.on('mensaje', txt => {
+            Swal.fire({
+                icon: "success",
+                title: txt,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
+
+        Livewire.on('evtPermisoBorrar', id => {
+           mostrarAlertas('mostrar-categorias', id);
+        });
+
+        Livewire.on('evtConfirmarBorrar', id => {
+            mostrarAlertas('mostrar-user-posts', id);
+        });
     </script>
 </body>
 

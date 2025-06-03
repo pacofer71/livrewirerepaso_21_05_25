@@ -23,6 +23,10 @@ class CrearPost extends Component
 
     public function store(){
         $this->cform->formStore();
+        $this->cancelar();
+        //Evento para que aparezca el post en show-post sin tener que refrescar
+        $this->dispatch('evtCrearPost')->to(MostrarUserPosts::class);
+        $this->dispatch('mensaje', "Se ha guardadó el nuevo Post");
     }
     public function cancelar(){
         $this->openCrear=false;
